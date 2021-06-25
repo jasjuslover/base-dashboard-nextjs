@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Header from "../../components/Header";
 import Sidebar from "../../components/sidebar";
+import { SidebarContext } from "../../context/SidebarContext";
 
 export default function Layout({ children }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isSideMenuOpen } = useContext(SidebarContext);
 
   return (
-    <div className="flex">
+    <div className={`flex h-screen bg-gray-50 dark:bg-gray-900 ${isSideMenuOpen ? "overflow-hidden" : ""}`}>
       <Sidebar />
-
-      <div class="w-full flex flex-col h-screen overflow-y-hidden">
-        <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-
-        <div class="w-full overflow-x-hidden border-t flex flex-col">
-          <main class="w-full flex-grow p-6">{children}</main>
-
-          <footer class="w-full bg-white text-right p-4">WIT 2021</footer>
-        </div>
+      <div className="flex flex-col flex-1 w-full">
+        <Header />
+        <main class="h-full overflow-y-auto">
+          <div className="container grid px-6 mx-auto">
+            <h2 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Dashboard</h2>
+            {children}
+          </div>
+        </main>
       </div>
     </div>
   );
