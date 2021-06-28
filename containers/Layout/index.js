@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Header from "../../components/Header";
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../../components/Sidebar";
 import { SidebarContext } from "../../context/SidebarContext";
 
 export default function Layout({ children }) {
